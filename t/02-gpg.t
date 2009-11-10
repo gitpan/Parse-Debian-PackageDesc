@@ -7,10 +7,22 @@
 use strict;
 use warnings;
 
-use Test::More tests => 8;
+use English qw(-no_match_vars);
+use Test::More;
 
 BEGIN { use FindBin qw($Bin); use lib $Bin; };
-BEGIN { use_ok( 'Parse::Debian::PackageDesc' ) };
+
+# Check if there's a sane "gpg" available
+my $gpg_version_unused = `gpg --version`;
+my $ret = $CHILD_ERROR;
+if ($ret == -1) {
+    plan skip_all => "No working 'gpg' installation available";
+}
+else {
+    plan tests => 8;
+}
+
+use_ok('Parse::Debian::PackageDesc');
 
 my $unsigned_path = 't/files/ack_1.66-1_i386.changes';
 my $unsigned = Parse::Debian::PackageDesc->new($unsigned_path,
