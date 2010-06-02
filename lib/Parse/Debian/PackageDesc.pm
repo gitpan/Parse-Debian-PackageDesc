@@ -8,12 +8,13 @@ package Parse::Debian::PackageDesc;
 
 use strict;
 use warnings;
-our $VERSION = 0.11;
+our $VERSION = 0.12;
 use 5.00800;
 
 use Carp    qw(carp croak); # NEVER USE warn OR die !
 use English qw(-no_match_vars);
 use File::Basename;
+use Encode;
 
 
 sub new {
@@ -25,7 +26,7 @@ sub new {
                      }, $class;
     if (-r $path) {
         open F, $path;
-        $self->{contents} = join("", <F>);
+        $self->{contents} = decode('utf-8', join("", <F>));
         close F;
     }
     else {

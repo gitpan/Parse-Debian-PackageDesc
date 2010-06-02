@@ -1,3 +1,7 @@
+# Exit if we're on Windows. This should play nice for CPAN testers
+my $running_on_windows = $^O eq 'MSWin32' || $^O eq 'cygwin';
+die qq(OS unsupported\n) if $running_on_windows;
+
 use ExtUtils::MakeMaker;
 
 WriteMakefile(

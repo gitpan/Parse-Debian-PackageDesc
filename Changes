@@ -1,0 +1,5 @@
+0.12  Wed Jun  2 10:03:42 CEST 2010
+        - Treat files as UTF-8 and return proper strings
+
+0.11  Thu Jun  4 10:03:05 CEST 2009
+        - Initial release

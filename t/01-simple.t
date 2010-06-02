@@ -7,7 +7,10 @@
 use strict;
 use warnings;
 
-use Test::More tests => 18;
+use Test::More tests => 19;
+
+use Encode;
+use utf8;
 
 BEGIN { use FindBin qw($Bin); use lib $Bin; };
 BEGIN { use_ok( 'Parse::Debian::PackageDesc' ) };
@@ -38,6 +41,8 @@ is($package->distribution, "unstable");
 is_deeply([$package->architecture], [ qw(source i386) ]);
 is($package->urgency, "low");
 is($package->maintainer, 'Esteban Manchado Velázquez <estebanm@estebanm-desktop>');
+ok(Encode::is_utf8($package->maintainer),
+   "The maintainer name should be correctly decoded");
 is($package->date, "Tue, 18 Sep 2007 17:07:42 +0200");
 is($package->changes, <<EOF);
  ack (1.66-1) unstable; urgency=low
