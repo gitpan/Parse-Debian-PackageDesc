@@ -1,14 +1,8 @@
-# $Id$
-# $Source$
-# $Author$
-# $HeadURL$
-# $Revision$
-# $Date$
 package Parse::Debian::PackageDesc;
 
 use strict;
 use warnings;
-our $VERSION = 0.12;
+our $VERSION = 0.13;
 use 5.00800;
 
 use Carp    qw(carp croak); # NEVER USE warn OR die !
@@ -73,16 +67,28 @@ sub version {
     $_[0]->get_line_attr("Version");
 }
 
+sub extract_upstream_version {
+    my ($pkg, $version) = @_;
+
+    $version =~ s/-[a-z0-9+.~]+$//i;
+    return $version
+}
+
 sub upstream_version {
     my ($self) = @_;
-    $self->version =~ /^([^-]*)/;
-    return $1;
+    return __PACKAGE__->extract_upstream_version($self->version);
+}
+
+sub extract_debian_revision {
+    my ($pkg, $version) = @_;
+
+    $version =~ /-([a-z0-9+.~]+)$/i;
+    return $1 || "";
 }
 
 sub debian_revision {
     my ($self) = @_;
-    $self->version =~ /.*-(.*)/;
-    return $1 || "";
+    return __PACKAGE__->extract_debian_revision($self->version);
 }
 
 sub distribution {

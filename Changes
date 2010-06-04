@@ -1,3 +1,7 @@
+0.13  Fri Jun  4 12:34:21 CEST 2010
+        - Make the upstream version/debian revision parsing compliant with
+          Debian policy (Closes: #58052 in CPAN). Thanks Ansgar Burchardt.
+
 0.12  Wed Jun  2 10:03:42 CEST 2010
         - Treat files as UTF-8 and return proper strings
 

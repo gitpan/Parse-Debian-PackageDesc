@@ -1,9 +1,3 @@
-# $Id$
-# $Source$
-# $Author$
-# $HeadURL$
-# $Revision$
-# $Date$
 use strict;
 use warnings;
 
