@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 19;
+use Test::More tests => 20;
 
 use Encode;
 use utf8;
@@ -46,6 +46,8 @@ EOF
 is_deeply([ $package->files ], [ qw(ack_1.66-1.dsc ack_1.66.orig.tar.gz ack_1.66-1.diff.gz ack_1.66-1_i386.deb) ]);
 is_deeply([ $package->binary_package_files ], [ qw(ack_1.66-1_i386.deb) ]);
 
+my $binnmu_package = Parse::Debian::PackageDesc->new('t/files/libparse-debian-packagedesc-perl_0.12-1+b3_i386.changes');
+is($binnmu_package->source, "libparse-debian-packagedesc-perl");
 
 __END__
 

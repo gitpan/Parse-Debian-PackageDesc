@@ -2,7 +2,7 @@ package Parse::Debian::PackageDesc;
 
 use strict;
 use warnings;
-our $VERSION = 0.13;
+our $VERSION = 0.14;
 use 5.00800;
 
 use Carp    qw(carp croak); # NEVER USE warn OR die !
@@ -55,8 +55,13 @@ sub name {
     $_[0]->source;
 }
 
+# This is special because we have to cover the binNMU case (we get lines like:
+# "Source: libparse-debian-packagedesc-perl (0.12-1)" but we have to return
+# just "libparse-debian-packagedesc-perl")
 sub source {
-    $_[0]->get_line_attr("Source");
+    my $source_value = $_[0]->get_line_attr("Source");
+    $source_value =~ s/ .*//;
+    return $source_value;
 }
 
 sub architecture {
