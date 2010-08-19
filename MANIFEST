@@ -6,6 +6,7 @@ t/01-simple.t
 t/02-gpg.t
 t/03-versions.t
 t/files/ack_1.66-1_i386.changes
+t/files/libparse-debian-packagedesc-perl_0.12-1+b3_i386.changes
 t/files/libwww-scraper-yahoo360-perl_0.03-0opera1_amd64.changes
 t/files/signed-ack_1.66-1_i386.changes
 t/gnupg/pubring.gpg

@@ -2,7 +2,7 @@ package Parse::Debian::PackageDesc;
 
 use strict;
 use warnings;
-our $VERSION = 0.14;
+our $VERSION = 0.15;
 use 5.00800;
 
 use Carp    qw(carp croak); # NEVER USE warn OR die !
